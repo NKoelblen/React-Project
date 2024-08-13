@@ -24,6 +24,22 @@ function App() {
 		setPerson({ ...person, age: person.age + 1 });
 	};
 
+	const [value, setValue] = useState('John doe');
+	const handleChange = (e) => {
+		setValue(e.target.value);
+	};
+
+	const [checked, setChecked] = useState(true);
+	const toggleCheck = () => {
+		setChecked(!checked);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		let data = new FormData(e.target);
+		console.log(data.get('firstname'));
+	};
+
 	return (
 		<>
 			<Title
@@ -51,6 +67,32 @@ function App() {
 				Age de {person.firstName}: {person.age}
 			</p>
 			<button onClick={incrementAge}>Ajouter un an</button>
+			<hr />
+			<form>
+				<input
+					name="firstname"
+					value={value}
+					onChange={handleChange}
+				/>
+				<input
+					type="checkbox"
+					name="checkbox"
+					checked={checked}
+					onChange={toggleCheck}
+				/>
+				<label htmlFor="checkbox">Accepter la politique de confidentialité</label>
+				<button disabled={!checked}>Envoyer</button>
+			</form>
+			<hr />
+			<form onSubmit={handleSubmit}>
+				<input
+					type="text"
+					name="firstname"
+					defaultValue={'azerty'}
+				/>
+				<textarea defaultValue={'azerty'} />
+				<button>Envoyer</button>
+			</form>
 		</>
 	);
 }
