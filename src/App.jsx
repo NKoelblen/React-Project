@@ -29,10 +29,7 @@ function App() {
 		setValue(e.target.value);
 	};
 
-	const [checked, setChecked] = useState(true);
-	const toggleCheck = () => {
-		setChecked(!checked);
-	};
+	const [isAccepted, setIsAccepted] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -74,14 +71,11 @@ function App() {
 					value={value}
 					onChange={handleChange}
 				/>
-				<input
-					type="checkbox"
-					name="checkbox"
-					checked={checked}
-					onChange={toggleCheck}
+				<PCCheckbox
+					checked={isAccepted}
+					onCheck={setIsAccepted}
 				/>
-				<label htmlFor="checkbox">Accepter la politique de confidentialité</label>
-				<button disabled={!checked}>Envoyer</button>
+				<button disabled={!isAccepted}>Envoyer</button>
 			</form>
 			<hr />
 			<form onSubmit={handleSubmit}>
@@ -109,6 +103,22 @@ function Title({ styles, children, hidden, ...props }) {
 		>
 			{children}
 		</h1>
+	);
+}
+
+function PCCheckbox({ checked, onCheck }) {
+	return (
+		<>
+			<label>
+				<input
+					type="checkbox"
+					name=""
+					onChange={(e) => onCheck(e.target.checked)}
+					checked={checked}
+				/>
+				Accepter la Politique de Confidentialité
+			</label>
+		</>
 	);
 }
 
