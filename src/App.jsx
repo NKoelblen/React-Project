@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+
+const title = "Sortir la tête de l'eau !";
+const titleStyle = { color: 'red', backgroundColor: 'black' };
+const showTitle = true;
+
+const lis = ['Lorem ipsum', 'Dolor sit amet', 'Consectetur elit'];
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	return (
+		<>
+			<Title
+				styles={titleStyle}
+				id="mainTitle"
+				className="title"
+				data-demo="demo"
+			>
+				{showTitle && title}
+			</Title>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque error similique ex, ipsa architecto officia consequatur iste dolorum tenetur ab! Dolor atque
+				accusamus voluptates pariatur hic soluta neque nisi iure.
+			</p>
+			<input type="text" />
+			<ul>
+				{lis.map((li) => (
+					<li key={li}>{li}</li>
+				))}
+			</ul>
+		</>
+	);
 }
 
-export default App
+function Title({ styles, children, hidden, ...props }) {
+	if (hidden) {
+		return null;
+	}
+
+	return (
+		<h1
+			{...props}
+			style={styles}
+		>
+			{children}
+		</h1>
+	);
+}
+
+export default App;
