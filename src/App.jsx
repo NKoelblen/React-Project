@@ -7,6 +7,23 @@ const showTitle = true;
 const lis = ['Lorem ipsum', 'Dolor sit amet', 'Consectetur elit'];
 
 function App() {
+	const [count, setCount] = useState(0);
+
+	const increment = () => {
+		setCount(count + 1);
+		setCount((count) => count + 1);
+	};
+
+	const [person, setPerson] = useState({
+		firstName: 'John',
+		lastName: 'Smith',
+		age: 18,
+	});
+
+	const incrementAge = () => {
+		setPerson({ ...person, age: person.age + 1 });
+	};
+
 	return (
 		<>
 			<Title
@@ -27,6 +44,13 @@ function App() {
 					<li key={li}>{li}</li>
 				))}
 			</ul>
+			<hr />
+			<p>Compteur: {count}</p>
+			<button onClick={increment}>Incrémenter</button>
+			<p>
+				Age de {person.firstName}: {person.age}
+			</p>
+			<button onClick={incrementAge}>Ajouter un an</button>
 		</>
 	);
 }
