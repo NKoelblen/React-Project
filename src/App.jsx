@@ -3,6 +3,7 @@ import { TextInput } from './components/forms/TextInput';
 import { Checkbox } from './components/forms/Checkbox';
 import { ProductCategoryRow } from './components/products/ProductCategoryRow';
 import { useIncrement } from './hooks/useIncrement';
+import { useFetch } from './hooks/useFetch';
 
 const PRODUCTS = [
 	{ category: 'Fruits', price: '$1', stocked: true, name: 'Apple' },
@@ -29,6 +30,8 @@ function App() {
 
 	const { count, increment, decrement } = useIncrement({ base: 1, max: 10, min: -10 });
 
+	const { loading, data, error } = useFetch('https://jsonplaceholder.typicode.com/posts?_limit=10');
+
 	return (
 		<>
 			<SearchBar
@@ -43,6 +46,11 @@ function App() {
 				<span>Compteur : {count}</span>
 				<button onClick={increment}>Incrémenter</button>
 				<button onClick={decrement}>Décrémenter</button>
+			</div>
+			<hr />
+			<div>
+				{loading && <div>Chargement...</div>}
+				{data && <div>{JSON.stringify(data)}</div>}
 			</div>
 		</>
 	);
