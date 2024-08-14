@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TextInput } from './components/forms/TextInput';
 import { Checkbox } from './components/forms/Checkbox';
 import { ProductCategoryRow } from './components/products/ProductCategoryRow';
+import { useIncrement } from './hooks/useIncrement';
 
 const PRODUCTS = [
 	{ category: 'Fruits', price: '$1', stocked: true, name: 'Apple' },
@@ -26,6 +27,8 @@ function App() {
 		return true;
 	});
 
+	const { count, increment, decrement } = useIncrement({ base: 1, max: 10, min: -10 });
+
 	return (
 		<>
 			<SearchBar
@@ -35,6 +38,12 @@ function App() {
 				onShowStockedChange={setShowStocked}
 			/>
 			<ProductTable products={visibleProducts} />
+			<hr />
+			<div>
+				<span>Compteur : {count}</span>
+				<button onClick={increment}>Incrémenter</button>
+				<button onClick={decrement}>Décrémenter</button>
+			</div>
 		</>
 	);
 }
