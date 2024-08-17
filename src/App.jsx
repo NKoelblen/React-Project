@@ -21,7 +21,7 @@ function getPage(page, params) {
 		return <Home />;
 	}
 	if (page === 'post') {
-		return <Single postId={params} />;
+		return <Single postId={parseInt(params)} />;
 	}
 	if (page === 'contact') {
 		return <Contact />;
