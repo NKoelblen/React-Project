@@ -3,9 +3,8 @@ import { Spinner } from '../components/Spinner';
 import { useFetch } from '../hooks/useFetch';
 import { useHashNavigation } from '../hooks/useHashNavigation';
 
-export function Single() {
-	const { page, params } = useHashNavigation();
-	const { loading, data, error } = useFetch(`https://jsonplaceholder.typicode.com/posts/${params}`);
+export function Single({ postId }) {
+	const { loading, data, error } = useFetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);
 	if (loading) {
 		return <Spinner />;
 	}

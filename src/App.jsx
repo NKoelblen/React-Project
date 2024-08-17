@@ -7,7 +7,7 @@ import { Single } from './pages/Single';
 
 function App() {
 	const { page, params } = useHashNavigation();
-	const pageContent = getPage(page);
+	const pageContent = getPage(page, params);
 	return (
 		<>
 			<Header page={page} />
@@ -16,12 +16,12 @@ function App() {
 	);
 }
 
-function getPage(page) {
+function getPage(page, params) {
 	if (page === 'home') {
 		return <Home />;
 	}
 	if (page === 'post') {
-		return <Single />;
+		return <Single postId={params} />;
 	}
 	if (page === 'contact') {
 		return <Contact />;
