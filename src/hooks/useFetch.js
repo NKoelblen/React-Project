@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
 
+/**
+ *
+ * @param {string} url
+ * @param {{}} options
+ * @returns {{boolean loading, data, errors}}
+ */
 export function useFetch(url, options = {}) {
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState(null);
-	const [errors, setErrors] = useState(null);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		fetch(url, {
 			...options,
 			headers: {
+				Accept: 'application/json; charset=UTF-8',
 				...options.headers,
 			},
 		})
@@ -17,7 +24,7 @@ export function useFetch(url, options = {}) {
 				setData(data);
 			})
 			.catch((e) => {
-				setErrors(e);
+				setError(e);
 			})
 			.finally(() => {
 				setLoading(false);
@@ -27,6 +34,6 @@ export function useFetch(url, options = {}) {
 	return {
 		loading,
 		data,
-		errors,
+		error,
 	};
 }

@@ -20,7 +20,7 @@ function getPage(page) {
 	if (page === 'home') {
 		return <Home />;
 	}
-	if (page === 'post') {
+	if (page.startsWith('post')) {
 		return <Single />;
 	}
 	if (page === 'contact') {

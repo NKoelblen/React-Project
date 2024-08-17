@@ -1,5 +1,9 @@
 import { useState } from 'react';
 
+/**
+ *
+ * @returns {{int count, function increment, function decrement}}
+ */
 export function useIncrement({ base = 0, max = Infinity, min = -Infinity }) {
 	const [state, setState] = useState(base);
 	return {

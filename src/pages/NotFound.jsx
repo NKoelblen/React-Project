@@ -1,3 +1,7 @@
+/**
+ *
+ * @param {string} page
+ */
 export function NotFound({ page }) {
 	return (
 		<>

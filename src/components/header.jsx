@@ -1,5 +1,9 @@
 import { dynamicClass } from '../utils/dynamicClass';
 
+/**
+ *
+ * @param {string} page
+ */
 export function Header({ page }) {
 	return (
 		<nav className="navbar navbar-expand-lg bg-body-secondary">

@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 
+/**
+ *
+ * @returns {{string page}}
+ */
 export function useHashNavigation() {
 	const [hash, setHash] = useState(location.hash);
 
