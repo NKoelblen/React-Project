@@ -24,7 +24,7 @@ export function Home() {
 							image={`https://picsum.photos/id/${post.id}/400/300`}
 							title={post.title}
 							text={post.body}
-							button={{ link: `#post-${post.id}`, label: "Voir l'article" }}
+							button={{ link: `#post:${post.id}`, label: "Voir l'article" }}
 						/>
 					</div>
 				))}

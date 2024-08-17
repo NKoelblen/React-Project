@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { PageItem } from 'react-bootstrap';
 
 /**
  *
@@ -16,5 +17,10 @@ export function useHashNavigation() {
 			window.removeEventListener('hashchange', handleHashChange);
 		};
 	}, []);
-	return { page: hash.replaceAll('#', '') || 'home' };
+
+	const request = hash.replaceAll('#', '').split(':', 2);
+	return {
+		page: request[0] || 'home',
+		params: request[1],
+	};
 }

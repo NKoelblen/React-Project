@@ -4,9 +4,8 @@ import { useFetch } from '../hooks/useFetch';
 import { useHashNavigation } from '../hooks/useHashNavigation';
 
 export function Single() {
-	const { page } = useHashNavigation();
-	const id = page.split('-')[1];
-	const { loading, data, error } = useFetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+	const { page, params } = useHashNavigation();
+	const { loading, data, error } = useFetch(`https://jsonplaceholder.typicode.com/posts/${params}`);
 	if (loading) {
 		return <Spinner />;
 	}

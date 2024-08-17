@@ -6,7 +6,7 @@ import { NotFound } from './pages/NotFound';
 import { Single } from './pages/Single';
 
 function App() {
-	const { page } = useHashNavigation();
+	const { page, params } = useHashNavigation();
 	const pageContent = getPage(page);
 	return (
 		<>
@@ -20,7 +20,7 @@ function getPage(page) {
 	if (page === 'home') {
 		return <Home />;
 	}
-	if (page.startsWith('post')) {
+	if (page === 'post') {
 		return <Single />;
 	}
 	if (page === 'contact') {
